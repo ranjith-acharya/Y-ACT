@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            @if(auth()->user()->role === 'admin') {{ __('ADMIN Profile') }} @else {{ __('Profile') }} @endif
+            @if(auth()->user()->role === 'admin') ADMIN Profile - {{ Str::mask(Auth::user()->name, '.', 10) }} @else Profile - {{ Str::mask(auth()->user()->name, '.', 10) }} @endif
         </h2>
     </x-slot>
 
