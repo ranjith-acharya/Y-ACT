@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <style>::-webkit-scrollbar {width: 5px;}::-webkit-scrollbar-thumb {background: #1F2937;}</style>
     <body class="font-sans antialiased">
@@ -34,4 +35,5 @@
             </main>
         </div>
     </body>
+    @livewireScripts
 </html>
