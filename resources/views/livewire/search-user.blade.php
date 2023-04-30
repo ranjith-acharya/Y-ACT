@@ -8,13 +8,13 @@
     </label>
     <ul role="list" class="p-6 divide-y divide-slate-600">
         @foreach ($users as $user)
-        <li class="flex py-4 first:pt-0 last:pb-0">
-            <img class="h-10 w-10 rounded-full" src="../img/profile-picture/{{ $user->avatar }}" alt="{{ $user->avatar }}" />
-            <div class="ml-3 overflow-hidden">
-                <p class="text-sm font-medium text-slate-500">{{ $user->name }}</p>
-                <p class="text-sm text-slate-500 truncate">{{ $user->email }}</p>
-            </div>
-          </li>
+            <li class="flex py-4 first:pt-0 last:pb-0">
+                <img class="h-10 w-10 rounded-full" src="../img/profile-picture/{{ $user->avatar }}" alt="{{ $user->avatar }}" />
+                <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-500">{{ $user->name }}</p>
+                    <p class="text-sm text-slate-500 truncate">{{ $user->email }}</p>
+                </div>
+            </li>
         @endforeach
       </ul>
 </div>

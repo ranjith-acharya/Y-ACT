@@ -13,7 +13,9 @@ class SearchUser extends Component
 
         $users = [];
         if(strlen($this->search) > 0){
-            $users = User::where('name', 'LIKE', '%'. $this->search. '%')->get();
+            $users = User::where('name', 'LIKE', '%'. $this->search. '%')
+                    ->where('role', 'member')
+                    ->get();
         }        
         return view('livewire.search-user', [
             'users' => $users
