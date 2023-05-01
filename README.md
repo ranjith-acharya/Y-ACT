@@ -4,6 +4,15 @@ This is a repository for the Y-ACT project, built using Laravel, Breeze, Spatie/
 
 ## Installation
 
+Before you begin, make sure you have the following installed:
+
+- PHP 7.4 or later
+- Composer
+- Node.js
+- NPM
+
+Follow these steps to install and set up the project:
+
 1. Clone the repository:
 
 ```
@@ -20,7 +29,7 @@ npm install
 3. Copy the `.env.example` file to `.env`:
 
 ```
-copy .env.example .env
+cp .env.example .env
 ```
 
 4. Generate an application key:
@@ -56,7 +65,7 @@ php artisan breeze:install
 
 ```
 composer require spatie/laravel-permission
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
 php artisan migrate
 ```
 
