@@ -1,6 +1,12 @@
 # Y-ACT Project
 
 This is a repository for the Y-ACT project, built using Laravel, Breeze, Spatie/Laravel-Permission, and Livewire.
+<p align="left">
+  <img src="https://img.shields.io/github/languages/count/ranjith-acharya/Y-ACT?style=for-the-badge">
+  <img src="https://img.shields.io/github/languages/top/ranjith-acharya/Y-ACT?style=for-the-badge">
+  <img src="https://img.shields.io/github/last-commit/ranjith-acharya/Y-ACT?style=for-the-badge">
+</p>
+
 
 ## Installation
 
