@@ -1,6 +1,6 @@
 # Y-ACT Project
 
-This is a repository for the Y-ACT project, built using Laravel and Breeze.
+This is a repository for the Y-ACT project, built using Laravel, Breeze, Spatie/Laravel-Permission, and Livewire.
 
 ## Installation
 
@@ -20,7 +20,7 @@ npm install
 3. Copy the `.env.example` file to `.env`:
 
 ```
-cp .env.example .env
+copy .env.example .env
 ```
 
 4. Generate an application key:
@@ -52,7 +52,21 @@ php artisan migrate
 php artisan breeze:install
 ```
 
-8. Build assets:
+8. Install Spatie/Laravel-Permission:
+
+```
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan migrate
+```
+
+9. Install Livewire:
+
+```
+composer require livewire/livewire
+```
+
+10. Build assets:
 
 ```
 npm run dev
