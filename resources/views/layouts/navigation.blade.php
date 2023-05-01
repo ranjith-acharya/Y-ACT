@@ -13,7 +13,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : route('dashboard')">
+                    <x-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -24,7 +24,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <img src="../img/profile-picture/{{ Auth::user()->avatar }}" class="w-9 h-9 rounded" alt="{{ auth()->user()->name }}">
+                            <img src="../../../img/profile-picture/{{ Auth::user()->avatar }}" class="w-9 h-9 rounded" alt="{{ auth()->user()->name }}">
                             <div class="ml-2">{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
@@ -69,7 +69,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : route('dashboard')">
+            <x-responsive-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
