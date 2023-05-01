@@ -6,15 +6,25 @@
         </span>
         <input wire:model="search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Members..." required>
     </label>
-    <ul role="list" class="p-6 divide-y divide-slate-600">
+    @if(count($users) > 0)
+    <ul role="list" class="p-4 divide-y divide-stone-50 rounded-b-lg bg-zinc-500">
         @foreach ($users as $user)
-            <li class="flex py-4 first:pt-0 last:pb-0">
+        <a href="@if(Auth::user()->role === 'admin') {{ route('admin.view.show', $user->id) }} @else {{ route('view.show', $user->id) }} @endif">
+            <li class="flex py-4">
                 <img class="h-10 w-10 rounded-full" src="../img/profile-picture/{{ $user->avatar }}" alt="{{ $user->avatar }}" />
-                <div class="ml-3 overflow-hidden">
-                    <p class="text-sm font-medium text-slate-500">{{ $user->name }}</p>
-                    <p class="text-sm text-slate-500 truncate">{{ $user->email }}</p>
+                <div class="ml-3 overflow-hidden text-stone-50">
+                    <p class="text-md font-medium">
+                    @if(Auth::user()->id === $user->id)
+                        {{ $user->name }}<span class="ml-1 text-xs">(You)</span>
+                    @else
+                        {{ $user->name }}
+                    @endif
+                    </p>
+                    <p class="text-sm truncate uppercase">{{ $user->role }}</p>
                 </div>
             </li>
+        </a>
         @endforeach
-      </ul>
+    </ul>
+    @endif
 </div>
