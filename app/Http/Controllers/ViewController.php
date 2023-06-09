@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profile;
 
 class ViewController extends Controller
 {
@@ -37,8 +38,10 @@ class ViewController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
+        $profile = Profile::where('user_id', $id)->first();
         return view('memberView', [
-            'user' => $user
+            'user' => $user,
+            'profile' => $profile,
         ]);
     }
 
