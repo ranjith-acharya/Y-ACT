@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('view', ViewController::class);
+    Route::resource('bio', UserProfileController::class);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -38,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
             Route::patch('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
             Route::resource('member/view', ViewController::class);
+            Route::resource('member/bio', UserProfileController::class);
         });
     });
 });
