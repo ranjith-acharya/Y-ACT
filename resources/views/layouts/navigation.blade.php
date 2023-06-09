@@ -16,6 +16,9 @@
                     <x-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.view.show', auth()->user()->id) : route('view.show', auth()->user()->id)" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.view.show', auth()->user()->id) : request()->routeIs('view.show', auth()->user()->id)">
+                        {{ __('Bio') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -71,6 +74,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.dashboard') : route('dashboard')" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="(auth()->user()->role === 'admin') ? route('admin.view.show', auth()->user()->id) : route('view.show', auth()->user()->id)" :active="(auth()->user()->role === 'admin') ? request()->routeIs('admin.view.show', auth()->user()->id) : request()->routeIs('view.show', auth()->user()->id)">
+                {{ __('Bio') }}
             </x-responsive-nav-link>
         </div>
 
