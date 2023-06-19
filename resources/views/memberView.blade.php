@@ -24,9 +24,12 @@
                 </button>
             </div>
             @endif
-            <div class="dark:bg-gray-700 text-white rounded p-3">
-                {{ $user->name }}<br>{{ $user->email }}<br><br>
-                
+            @if(Auth::user()->id == $user->id && Auth::user()->role === 'member')
+                <a href="{{ route('bio.edit', $profile->id) }}">
+                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit Bio Info!</button>
+                </a>
+            @endif
+            <div class="dark:bg-gray-700 text-white rounded p-3">                
                 @if(isset($profile) == 0)
                     @if(Auth::user()->id == $user->id && Auth::user()->role === 'member')
                         <a href="{{ route('bio.create') }}">
@@ -34,10 +37,83 @@
                         </a>
                     @endif
                 @else
-                    {{ $profile }}
+                <div class="grid grid-cols-4 grid-rows-3 grid-flow-col gap-4">
+                    <div class="row-span-3">
+                        <img src="../../../img/profile-picture/{{ $profile->user->avatar }}" class="max-w-xs">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Full name: </label>
+                        {{ $profile->user->name }}
+                    </div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Contact: <span id="helper-text-explanation" class="mt-1 text-xs text-gray-500 dark:text-gray-400">(Click to send message)</span></label>
+                        <a href="https://api.whatsapp.com/send?phone=91{{ $profile->contact }}" target="_blank" class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">{{ $profile->contact }}</a>&nbsp;/&nbsp;<a href="https://api.whatsapp.com/send?phone=91{{ $profile->alternate_contact }}" target="_blank" class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">{{ $profile->alternate_contact }}</a>
+                    </div><div></div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Email address: </label>
+                        {{ $profile->user->email }}
+                    </div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date of Birth: </label>
+                        {{ Carbon\Carbon::parse($profile->date_of_birth)->format('d-M-Y') }}, {{ Carbon\Carbon::parse($profile->date_of_birth)->diffInYears() }}&nbsp;years
+                    </div><div></div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Account created: </label>
+                        {{ Carbon\Carbon::parse($profile->user->created_at)->diffForHumans() }}
+                    </div>
+                    <div>
+                        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Social Profiles: </label>
+                        <a href="https://www.facebook.com/{{ $profile->facebook_username }}" target="_blank"><i class="bi bi-facebook font-bold mr-2"></i></a>
+                        <a href="https://www.instagram.com/{{ $profile->instagram_username }}" target="_blank"><i class="bi bi-instagram font-bold mr-2"></i></a>
+                        <a href="https://www.linkedin.com/in/{{ $profile->linkedin_username }}" target="_blank"><i class="bi bi-linkedin font-bold"></i></a>
+                    </div>
+                  </div>
                 @endif
-
             </div>
         </div>
     </div>
 </x-app-layout>
+
+
+{{-- <div class="flex space-x-auto mb-6">
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Full name: </label>
+        {{ $profile->user->name }}
+    </div>
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Email address: </label>
+        {{ $profile->user->email }}
+    </div>
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Account created: </label>
+        {{ Carbon\Carbon::parse($profile->user->created_at)->diffForHumans() }}
+    </div>
+</div>
+<div class="flex space-x-auto mb-6">
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Contact: <span id="helper-text-explanation" class="mt-1 text-xs text-gray-500 dark:text-gray-400">(Click to send message)</span></label>
+        <a href="https://api.whatsapp.com/send?phone=91{{ $profile->contact }}" target="_blank" class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">{{ $profile->contact }}</a>&nbsp;/&nbsp;<a href="https://api.whatsapp.com/send?phone=91{{ $profile->alternate_contact }}" target="_blank" class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">{{ $profile->alternate_contact }}</a>
+    </div>
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date of Birth: </label>
+        {{ Carbon\Carbon::parse($profile->date_of_birth)->format('d-M-Y') }}, {{ Carbon\Carbon::parse($profile->date_of_birth)->diffInYears() }}&nbsp;years
+    </div>
+    <div class="flex-auto max-w-xs">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Social Profiles: </label>
+        <a href="https://www.facebook.com/{{ $profile->facebook_username }}" target="_blank"><i class="bi bi-facebook font-bold mr-2"></i></a>
+        <a href="https://www.instagram.com/{{ $profile->instagram_username }}" target="_blank"><i class="bi bi-instagram font-bold mr-2"></i></a>
+        <a href="https://www.linkedin.com/in/{{ $profile->linkedin_username }}" target="_blank"><i class="bi bi-linkedin font-bold"></i></a>
+    </div>
+</div>
+<div class="flex space-x-auto mb-6">
+    <div class="flex-auto max-w-xl">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Current address: </label>
+        {{ $profile->residence }}
+    </div>
+</div>
+<div class="flex space-x-auto mb-2">
+    <div class="flex-auto max-w-xl">
+        <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Native address: </label>
+        {{ $profile->native }}
+    </div>
+</div> --}}
