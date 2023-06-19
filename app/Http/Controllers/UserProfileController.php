@@ -66,7 +66,8 @@ class UserProfileController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $profile = Profile::find($id);
+        return $profile;
     }
 
     /**
